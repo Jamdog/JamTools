@@ -1,0 +1,9 @@
+main: me.jam.jamtools.JamTools
+version: 1.0
+name: JamTools
+description: Tools to make life easier
+permission: jamtools.death
+permission-message: Sorry, you don't have the required access to be able to perform that action!
+commands:
+  death:
+    description: Displays a players last death location
