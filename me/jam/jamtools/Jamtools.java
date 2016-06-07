@@ -263,10 +263,11 @@ public class JamTools extends JavaPlugin
 	 */
 	public Location getDeathLocation()
 	{
+		World wldData;
 	    Location locInfo;
 		ResultSet result = statement.executeQuery("SELECT * FROM deathloc WHERE uuid='" + targetPlayer.getUniqueId().toString() + "';");
 		while (result.next()) {
-		    locInfo.setWorld(result.getString("world"));
+		    locInfo.setWorld(findWorld(result.getString("world")));
 		    locInfo.setX(Double.parseDouble((result.getString("x")));
 		    locInfo.setY(Double.parseDouble((result.getString("y")));
 		    locInfo.setZ(Double.parseDouble((result.getString("z")));
@@ -286,7 +287,7 @@ public class JamTools extends JavaPlugin
 		}
 		    ResultSet result = statement.executeQuery("UPDATE deathloc SET (world=,x=,y=,z=) WHERE uuid='" + targetPlayer.getUniqueId().toString() + "';");
 		} else {
-		    ResultSet result = statement.executeQuery("INSERT INTO deathloc VALUES (uuid=,world=,x=,y=,z=);");
+		    ResultSet result = statement.executeQuery("INSERT INTO deathloc (uuid,world,x,y,z) VALUES ('" + targetPlayer.getUniqueId().toString() + "',world=,x=,y=,z=);");
 		}
 		
 		while (result.next()) {
@@ -296,4 +297,19 @@ public class JamTools extends JavaPlugin
 		    locInfo.setZ(Double.parseDouble((result.getString("z")));
 		}
 	}
+
+    /* findWorld
+     * Return a World instance based on world name
+     */
+    public World findWorld(String worldName)
+    {
+    	List<World> worlds = Bukkit.getWorlds(); // Gets all the worlds loaded
+    	String shortName = 
+    		    // Loop through the worlds
+    		    for(a = 0; a < worlds.size(); a++)
+    		    {
+    		    	World currentWorld = (World) worlds.get(a); // Current world in the list
+    		    }
+
+    }
 }
